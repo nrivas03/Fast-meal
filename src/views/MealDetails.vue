@@ -41,7 +41,7 @@
       </div>
       <div class="mt-4">
         <YouTubeButton :href="meal.strYoutube" />
-        <Button href="#"></Button>
+        <Button href=""></Button>
         <input type="button" value="Print" onclick="javascript:window.print()" class="ml-3 px-3 py-2 rounded border-2 border-transparent text-indigo-600 transition-colors"  style="color: blue; cursor: pointer;"/>  
       </div>
         
