@@ -47,6 +47,9 @@
         
     </div>
 
+    <div class="my-3">
+      <CommentBox />
+    </div>
 
   </div>
 </template>
@@ -57,6 +60,7 @@ import { useRoute } from 'vue-router';
 import axiosClient from '../axiosClient';
 import YouTubeButton from '../components/YouTubeButton.vue';
 import Button from '../components/Button.vue';
+import CommentBox from '../components/CommentBox.vue'
 
 const route = useRoute();
 const meal = ref({});
