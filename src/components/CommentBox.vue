@@ -5,7 +5,7 @@
         <form >
             <input id="Name" type="text" v-model="name" >
             <input id="Comment" type="text" v-model="comment" >
-            <button @click="addComment">Submit</button>
+            <button @click="addComment($route.params.id)">Submit</button>
         </form>
     </div>
   <div class="container my-5 py-5">    
@@ -16,7 +16,7 @@
             <h4 class="mb-0">Recent comments</h4>
             <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
             <div class="d-flex flex-start" v-for="item of comments">
-              <div>
+              <div v-if="item.idMeal==$route.params.id">
                 <h6 class="fw-bold mb-1">{{item.name}}</h6>
                 <div class="d-flex align-items-center mb-3">
                   <p class="mb-0">
@@ -59,13 +59,14 @@
     this.getComments();
   },
   methods:{
-     addComment: function(){
+     addComment: function(route){
       let date = new Date();
       let day = date.toUTCString()
       this.comments.push({
         name: this.name,
         comment: this.comment,
         date: day,
+        idMeal: route,
       });
       console.log(this.comments);
       localStorage.setItem("comments", JSON.stringify(this.comments));
