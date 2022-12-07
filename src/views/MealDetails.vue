@@ -50,7 +50,6 @@
     <div class="my-3">
       <CommentBox />
     </div>
-
   </div>
 </template>
 
@@ -61,6 +60,7 @@ import axiosClient from '../axiosClient';
 import YouTubeButton from '../components/YouTubeButton.vue';
 import Button from '../components/Button.vue';
 import CommentBox from '../components/CommentBox.vue'
+import CommentBox2 from '../components/CommentBox2.vue'
 import { def } from '@vue/shared';
 
 const route = useRoute();
