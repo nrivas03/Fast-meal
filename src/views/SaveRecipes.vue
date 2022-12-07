@@ -11,14 +11,37 @@
   import Meals from "../components/Meals.vue";
   import axiosClient from "../axiosClient.js";
   
-  const meals = ref([]);
-  
-  onMounted(async () => {
-    for (let i = 0; i < 12; i++) {
-      axiosClient
-        .get(`random.php`)
-        .then(({ data }) => meals.value.push(data.meals[0]));
-    }
-  });
+  //const meals = ref([]);
   </script>
+
+<script>
+export default{
+  data(){
+    return{
+      meals: [],
+      recipe:[],
+    }
+  },
+  mounted() {
+    this.getSave();
+    this.showMeals();
+  },
+  methods:{
+    async showMeals(){
+      for (let i = 0; i < this.recipe.length; i++) {
+        axiosClient
+        .get(`lookup.php?i=${this.recipe[i]}`)
+        .then(({ data }) => this.meals.push(data.meals[0]));
+      }
+    },
+    async getSave(){
+      let data = localStorage.getItem("recipes");
+      if(data !=null){
+        this.recipe = JSON.parse(data);
+      }
+    },
+
+  }
+};
+</script>
   

@@ -41,7 +41,7 @@
       </div>
       <div class="mt-4">
         <YouTubeButton :href="meal.strYoutube" />
-        <Button href=""></Button>
+        <Button @click="saveRecipe($route.params.id)" style="cursor: pointer"></Button>
         <input type="button" value="Print" onclick="javascript:window.print()" class="ml-3 px-3 py-2 rounded border-2 border-transparent text-indigo-600 transition-colors"  style="color: blue; cursor: pointer;"/>  
       </div>
         
@@ -61,15 +61,46 @@ import axiosClient from '../axiosClient';
 import YouTubeButton from '../components/YouTubeButton.vue';
 import Button from '../components/Button.vue';
 import CommentBox from '../components/CommentBox.vue'
+import { def } from '@vue/shared';
 
 const route = useRoute();
 const meal = ref({});
 
+
+
 onMounted(() => {
+  //console.log(route.params.id);
   axiosClient.get(`lookup.php?i=${route.params.id}`)
     .then(({ data }) => {
       meal.value = data.meals[0] || {}
     })
 })
 
+</script>
+
+<script>
+export default{
+  data(){
+    return{
+      recipe:[],
+    }
+  },
+  mounted() {
+    this.getSave();
+  },
+  methods:{
+    async saveRecipe(route){
+      this.recipe.push(route);
+      console.log(route);
+      localStorage.setItem("recipes", JSON.stringify(this.recipe));
+    },
+    async getSave(){
+      let data = localStorage.getItem("recipes");
+      if(data !=null){
+        this.recipe = JSON.parse(data);
+      }
+    },
+
+  }
+};
 </script>
