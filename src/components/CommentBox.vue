@@ -3,9 +3,9 @@
       <div class="mt-5">
         <h1>Comments</h1>
         <form >
-            <input id="Name" type="text" v-model="name" >
-            <input id="Comment" type="text" v-model="comment" >
-            <button @click="addComment($route.params.id)">Submit</button>
+            <input id="Name" type="text" v-model="name" placeholder="User name" maxlength="25">
+            <input class="comment" id="Comment" type="text" v-model="comment" placeholder="Comment" maxlength="500">
+            <button class="buttonsubmit" @click="addComment($route.params.id)">Submit</button>
         </form>
     </div>
   <div class="container my-5 py-5">    
@@ -40,10 +40,26 @@
     </div>
   </div>
 </section>
+
 </template>
+
+
 
 <style scoped>
     .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+    
+    .buttonsubmit{
+      background-color: #c53fd4; color: rgb(255, 255, 255);
+      padding: 9px 25px;
+      box-shadow: 0 8px 13px 0 rgba(0, 0, 0, 0.68), 0 6px 20px 0 rgba(0,0,0,0.19);
+      position: relative;
+      left: 15px;
+    }
+
+    .comment{
+      position: relative;
+      left: 5px;
+    }
 </style>
 
 <script>
